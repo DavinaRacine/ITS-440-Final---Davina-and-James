@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.ComponentModel;
 using SQLite;
+using System.Diagnostics;
 using DavinaJamesFinal.Droid;
 
 
@@ -120,26 +121,7 @@ namespace DavinaJamesFinal
 			PasswordField.HorizontalOptions = LayoutOptions.Start;
 			PasswordField.VerticalOptions = LayoutOptions.StartAndExpand;
 
-			//Displaying Database Information (First two rows have the default information
-			var Account2 = myDatabase.Get<Account>(1);
-
-			Label Label1 = new Label();
-			Label1.Text = "First Name: " + Account2.FName;
-
-			Label Label2 = new Label();
-			Label2.Text = "Last Name: " + Account2.LName;
-
-			Label Label3 = new Label();
-			Label3.Text = "Address: " + Account2.Address;
-
-			Label Label4 = new Label();
-			Label4.Text = "Card: " + Account2.Card;
-
-			Label Label5 = new Label();
-			Label5.Text = "Username: " + Account2.Username;
-
-			Label Label6 = new Label();
-			Label6.Text = "Password: " + Account2.Password;
+			
 
 			//Saving the data to the database
 			Button LoginButton = new Button
@@ -153,22 +135,34 @@ namespace DavinaJamesFinal
 
 			LoginButton.Clicked += (sender, args) =>
 			{
-				//TEXT BOX VALIDATION. MAKE SURE THAT ALL TEXT BOXES ARE NOT EMPTY (may need to delete the default text) EXCEPT FOR THE CARD # ENTRY, THAT FIELD IS OPTIONAL
-				
-				//Send information to database
-				Account1.FName = FNameField.Text;
-				Account1.LName = LNameField.Text;
-				Account1.Address = AddressField.Text;
-				Account1.Card = CardField.Text.ToString();
-				Account1.Username = UsernameField.Text;
-				Account1.Password = PasswordField.Text;
-				myDatabase.Insert(Account1);
+				//Checks every entry to see if there is any text entered
+				if (String.IsNullOrWhiteSpace((FNameField.Text)) == true ||
+				   String.IsNullOrWhiteSpace((LNameField.Text)) == true ||
+				   String.IsNullOrWhiteSpace((AddressField.Text)) == true ||
+				   String.IsNullOrWhiteSpace((UsernameField.Text)) == true ||
+				   String.IsNullOrWhiteSpace((PasswordField.Text)) == true)
+                {
+					DisplayAlert("Error", "Please check information entered", "Ok");
+                }
+				else
+				{ 
 
-				//Direct to browsing page BUT as a user
-				var User = FNameField.Text;
-				Navigation.PushAsync(new Browse(User));
+					//Send information to database
+					Account1.FName = FNameField.Text;
+					Account1.LName = LNameField.Text;
+					Account1.Address = AddressField.Text;
+					Account1.Card = CardField.Text.ToString();
+					Account1.Username = UsernameField.Text;
+					Account1.Password = PasswordField.Text;
+					myDatabase.Insert(Account1);
 
+					//Direct to browsing page BUT as a user
+					var User = FNameField.Text;
+					Navigation.PushAsync(new Browse(User));
+				}
 			};
+
+			
 
 			this.Padding = new Thickness(10, 10, 10, 10);
 
@@ -192,13 +186,7 @@ namespace DavinaJamesFinal
 					UsernameField,
 					PasswordLabel,
 					PasswordField,
-					LoginButton,
-					Label1,
-					Label2,
-					Label3,
-					Label4,
-					Label5,
-					Label6,
+					LoginButton
 					
 
 

@@ -21,7 +21,6 @@ namespace DavinaJamesFinal
 
 			//Connection to Database - specifically the Account table *MAY NOT BE CORRECT*
 			SQLiteConnection myDatabase = DependencyService.Get<IDatabase>().ConnectToDB();
-			myDatabase.Table<Account>();
 
 			BackgroundColor = Color.AliceBlue;
 
@@ -72,6 +71,18 @@ namespace DavinaJamesFinal
 			SubmitButton.Clicked += (sender, args) =>
 			{
 				//MUST CHECK TO MAKE SURE NAME AND PASSWORD ARE IN DATABASE TO CONTINUE, NEED AN "IF STATEMENT"
+
+				if(String.IsNullOrWhiteSpace((UsernameField.Text)) == true ||
+				   String.IsNullOrWhiteSpace((PasswordField.Text)) == true)
+				{
+					DisplayAlert("Error","Information entered is empty, please check","Ok");
+                }
+				else
+                {
+					myDatabase.Table<Account>();
+				}
+
+
 				var User = UsernameField.Text;
 				Navigation.PushAsync(new Browse(User));
 
