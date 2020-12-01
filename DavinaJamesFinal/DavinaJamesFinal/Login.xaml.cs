@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.ComponentModel;
@@ -71,21 +70,26 @@ namespace DavinaJamesFinal
 			SubmitButton.Clicked += (sender, args) =>
 			{
 				//MUST CHECK TO MAKE SURE NAME AND PASSWORD ARE IN DATABASE TO CONTINUE, NEED AN "IF STATEMENT"
-
-				if(String.IsNullOrWhiteSpace((UsernameField.Text)) == true ||
-				   String.IsNullOrWhiteSpace((PasswordField.Text)) == true)
+				try
 				{
-					DisplayAlert("Error","Information entered is empty, please check","Ok");
-                }
-				else
-                {
-					myDatabase.Table<Account>();
+					if (String.IsNullOrWhiteSpace((UsernameField.Text)) == true ||
+					   String.IsNullOrWhiteSpace((PasswordField.Text)) == true)
+					{
+						DisplayAlert("Error", "Information entered is empty, please check", "Ok");
+					}
+					else
+					{
+						var Item_Return = myDatabase.FindWithQuery<Account>("Select * from Account where Username = ?", UsernameField.Text);
+
+						Account User = Item_Return;
+
+						Navigation.PushAsync(new Browse(User));
+					}
 				}
-
-
-				var User = UsernameField.Text;
-				Navigation.PushAsync(new Browse(User));
-
+				catch (Exception e)
+                {
+					DisplayAlert("Error", "Username does not exist in our records", "Ok");
+                }
 			};
 
 			this.Padding = new Thickness(10, 10, 10, 10);

@@ -6,7 +6,7 @@ using SQLite;
 
 namespace DavinaJamesFinal
 {
-	class Account
+	public class Account
 	{
         //Account table to keep track of users and their information
         [PrimaryKey, AutoIncrement]

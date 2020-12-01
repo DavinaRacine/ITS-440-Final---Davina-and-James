@@ -74,14 +74,14 @@ namespace DavinaJamesFinal
 		}
 
 		//Browing site as a user
-		public Browse(string x)
+		public Browse(Account A1)
 		{
 			InitializeComponent();
 			BackgroundColor = Color.AliceBlue;
 
 			//Welcome Labels
 			Label WelcomeLabel = new Label();
-			WelcomeLabel.Text = "Welcome " + x + "!";
+			WelcomeLabel.Text = "Welcome " + A1.FName + "!";
 			WelcomeLabel.FontSize = 60;
 			WelcomeLabel.FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label));
 			WelcomeLabel.HorizontalOptions = LayoutOptions.Center;

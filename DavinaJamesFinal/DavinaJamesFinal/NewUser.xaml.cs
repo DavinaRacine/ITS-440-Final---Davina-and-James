@@ -135,6 +135,8 @@ namespace DavinaJamesFinal
 
 			LoginButton.Clicked += (sender, args) =>
 			{
+				Account User = new Account();
+
 				//Checks every entry to see if there is any text entered
 				if (String.IsNullOrWhiteSpace((FNameField.Text)) == true ||
 				   String.IsNullOrWhiteSpace((LNameField.Text)) == true ||
@@ -157,7 +159,7 @@ namespace DavinaJamesFinal
 					myDatabase.Insert(Account1);
 
 					//Direct to browsing page BUT as a user
-					var User = FNameField.Text;
+					User.FName = FNameField.Text;
 					Navigation.PushAsync(new Browse(User));
 				}
 			};
