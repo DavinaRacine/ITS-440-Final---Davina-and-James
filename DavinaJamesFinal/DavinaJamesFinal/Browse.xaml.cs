@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using DavinaJamesFinal.Droid;
 namespace DavinaJamesFinal
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -79,6 +79,30 @@ namespace DavinaJamesFinal
 			InitializeComponent();
 			BackgroundColor = Color.AliceBlue;
 
+			//This section was used to create and insert elements into the games table
+			/*
+			SQLiteConnection myDatabase = DependencyService.Get<IDatabase>().ConnectToDB();
+
+			myDatabase.CreateTable<Games>();
+
+			Games game1 = new Games("Not Mario", "This game is about a contractor not trying to save a princess.", "Nintendo", "E");
+			Games game2 = new Games("Lunk", "Some crazy kid with a sword fights an adult that has magic.", "Nintendo", "E");
+			Games game3 = new Games("ToyTanfall Two", "You're a green army man that teams up with a lincoln logs mech to fight a dangerous foe.", "Xbox", "M");
+			Games game4 = new Games("GoneCall 5", "Trapped behind a mountain range and no way to call out, you must uncover the secret of this new cult.", "Xbox", "M");
+			Games game5 = new Games("Only Us 2", "Chase after a group of survivors that took something dear to you.", "Playstation", "M");
+			Games game6 = new Games("Joike and Rax", "Follow the adventures of Joike and Rax in this fantastical journey.", "Playstation", "E");
+			Games game7 = new Games("Outerareas 2", "Acclaimed sequel to the first Outerareas, this time everything is cranked up past 11 and onto 12.", "Computer", "M");
+			Games game8 = new Games("Modern Zone of War Remastered", "Fight the dreaded Meta Huggers in this annual installement of Modern Zone of War", "Computer", "M");
+
+			myDatabase.Insert(game1);
+			myDatabase.Insert(game2);
+			myDatabase.Insert(game3);
+			myDatabase.Insert(game4);
+			myDatabase.Insert(game5);
+			myDatabase.Insert(game6);
+			myDatabase.Insert(game7);
+			myDatabase.Insert(game8);
+			*/
 			//Welcome Labels
 			Label WelcomeLabel = new Label();
 			WelcomeLabel.Text = "Welcome " + A1.FName + "!";
