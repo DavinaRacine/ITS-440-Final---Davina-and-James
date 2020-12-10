@@ -20,6 +20,7 @@ This is how we will manage the project for the rest of the semester
 *    Select a game and add it to the cart
 *    Add multiple games to the cart
 *    Complete a sale and receive an order confirmation/summary
+*    Browse games as a guest
 
 
 **Additional requirements**
