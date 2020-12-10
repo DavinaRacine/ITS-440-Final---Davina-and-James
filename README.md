@@ -27,4 +27,4 @@ This is how we will manage the project for the rest of the semester
 *   The login account is cross-tied to the billing/shipping customer account data
 *   Reviews will be displayed regarding the game and the gameplay on the console
 *   Customers can modify games in the shopping cart
-*   NOT have access to administrative screen(s)
+*   Customers must NOT have access to administrative screen(s)
